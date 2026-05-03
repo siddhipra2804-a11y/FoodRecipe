@@ -33,7 +33,31 @@ export default function RecipeDetailScreen(props) {
     >
       {/* recipe Image */}
       <View style={styles.imageContainer} testID="imageContainer">
-     
+      <Image 
+        source={{ uri: recipe.recipeImage }} 
+        style={styles.recipeImage} 
+      />
+      </View>
+
+      {/* Navigation Buttons Overlay */}
+      <View style={styles.buttonWrapper}>
+        <TouchableOpacity 
+          onPress={() => navigation.goBack()}
+          style={styles.iconButton}
+        >
+          <ChevronLeftIcon size={30} strokeWidth={4.5} color="#fbbf24" />
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          onPress={() => setIsFavorite(!isFavorite)}
+          style={styles.iconButton}
+        >
+          {isFavorite ? (
+            <HeartIcon size={30} color="red" />
+          ) : (
+            <HeartOutline size={30} color="gray" />
+          )}
+        </TouchableOpacity>
       </View>
 
       {/* Back Button and Favorite Button */}
@@ -105,12 +129,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   recipeImage: {
-    width: wp(98),
-    height: hp(40),
+    // These are example styles; ensure they match your design requirements
+    width: '100%',
+    height: 150,
     borderRadius: 20,
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
-    marginTop: 4,
+    resizeMode: 'cover',
+    backgroundColor: '#f0f0f0', // Shows a light grey box while loading
   },
   topButtonsContainer: {
     width: "100%",
@@ -306,5 +330,19 @@ const styles = StyleSheet.create({
     fontSize: hp(3),
     fontWeight: "bold",
     color: "#D9534F",
+  },
+  buttonWrapper: {
+    width: '100%',
+    position: 'absolute', // Often used to overlay buttons on top of the image
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 40, // Adjust for status bar
+    paddingHorizontal: 16,
+  },
+  iconButton: {
+    padding: 8,
+    borderRadius: 50,
+    backgroundColor: 'white',
   },
 });
