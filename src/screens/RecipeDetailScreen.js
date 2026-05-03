@@ -7,6 +7,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux"; // Redux hooks
 import { toggleFavorite } from "../redux/favoritesSlice"; // Redux action
+import { ClockIcon, FireIcon, UsersIcon, Square3Stack3DIcon } from 'react-native-heroicons/outline';
 
 export default function RecipeDetailScreen(props) {
   const recipe = props.route.params; // recipe passed from previous screen
@@ -134,9 +135,51 @@ export default function RecipeDetailScreen(props) {
           {/* Description */}
          
         </View>
+
     </ScrollView>
   );
 }
+
+const RecipeMiscInfo = ({ recipe }) => {
+    return (
+      <View testID="miscContainer" style={styles.miscWrapper}>
+        
+        {/* Cooking Time */}
+        <View style={styles.iconItem}>
+          <View style={styles.iconCircle}>
+            <ClockIcon size={24} color="#525252" strokeWidth={2} />
+          </View>
+          <Text style={styles.iconLabel}>{recipe.mins} Mins</Text>
+        </View>
+  
+        {/* Servings */}
+        <View style={styles.iconItem}>
+          <View style={styles.iconCircle}>
+            <UsersIcon size={24} color="#525252" strokeWidth={2} />
+          </View>
+          <Text style={styles.iconLabel}>{recipe.servings} Servings</Text>
+        </View>
+  
+        {/* Calories */}
+        <View style={styles.iconItem}>
+          <View style={styles.iconCircle}>
+            <FireIcon size={24} color="#525252" strokeWidth={2} />
+          </View>
+          <Text style={styles.iconLabel}>{recipe.calories} Cal</Text>
+        </View>
+  
+        {/* Difficulty/Type */}
+        <View style={styles.iconItem}>
+          <View style={styles.iconCircle}>
+            <Square3Stack3DIcon size={24} color="#525252" strokeWidth={2} />
+          </View>
+          <Text style={styles.iconLabel}>{recipe.type || 'Easy'}</Text>
+        </View>
+  
+      </View>
+    );
+  };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -383,4 +426,25 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase', // Optional: makes categories look like badges
     letterSpacing: 1,
   },
+  miscWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: 20,
+    paddingHorizontal: 10,
+  },
+  iconItem: {
+    alignItems: 'center',
+    spaceY: 1, // If using Tailwind (nativewind), otherwise use margin:
+  },
+  iconCircle: {
+    backgroundColor: '#FBBF24', // Amber color
+    padding: 10,
+    borderRadius: 50,
+    marginBottom: 5,
+  },
+  iconLabel: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#4B5563',
+  }
 });
