@@ -7,7 +7,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux"; // Redux hooks
 import { toggleFavorite } from "../redux/favoritesSlice"; // Redux action
-import { ClockIcon, FireIcon, UsersIcon, Square3Stack3DIcon } from 'react-native-heroicons/outline';
+//import { ClockIcon, FireIcon, UsersIcon, Square3Stack3DIcon } from 'react-native-heroicons/outline';
 
 export default function RecipeDetailScreen(props) {
   const recipe = props.route.params; // recipe passed from previous screen
@@ -129,7 +129,9 @@ export default function RecipeDetailScreen(props) {
       </View>
 
       {/* Instructions */}
-      <View style={styles.sectionContainer} testID="sectionContainer">
+      <View testID="sectionContainer">
+        <Text style={styles.sectionTitle}>Ingredients</Text>
+        <View testID="ingredientsList">
         <Text style={styles.sectionTitle}>Ingredients</Text>
         <View testID="ingredientsList" style={styles.listWrapper}>
         {recipe.ingredients.map((item, index) => (
@@ -148,6 +150,8 @@ export default function RecipeDetailScreen(props) {
           </View>
         ))}
       </View>
+    </View>
+    </View>
     </View>
     </ScrollView>
   );
@@ -193,24 +197,14 @@ const RecipeMiscInfo = ({ recipe }) => {
     );
   };
 
-const RecipeInstructions = (props) => {
-  // Retrieve the recipe data passed from the navigation
-  const recipe = props.route.params;
+<View testID="sectionContainer">
+        <Text style={styles.sectionTitle}>Instructions</Text>
+        <Text style={styles.instructionsText}>
+          {recipe.recipeInstructions}
+        </Text>
+      </View>
+  
 
-  return (
-    <View testID="sectionContainer" style={styles.container}>
-      {/* Instructions Title */}
-      <Text style={styles.sectionTitle}>
-        Instructions
-      </Text>
-
-      {/* Instructions Body */}
-      <Text style={styles.instructionsText}>
-        {recipe.recipeInstructions}
-      </Text>
-    </View>
-  );
-};
 
 const styles = StyleSheet.create({
   container: {
