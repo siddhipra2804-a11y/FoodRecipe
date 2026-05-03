@@ -114,8 +114,10 @@ export default function RecipeDetailScreen(props) {
               
               </Text>
             <Text style={styles.recipeCategory} testID="recipeCategory">
-              </Text>
+            {recipe.category}
+            </Text>
           </View>
+
           <View style={styles.miscContainer} testID="miscContainer">
         
       </View>
@@ -371,5 +373,14 @@ const styles = StyleSheet.create({
     color: '#374151', // dark gray
     paddingHorizontal: 16,
     marginTop: 20,
+  },
+  categoryText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#6B7280', // Medium gray
+    paddingHorizontal: 16,
+    marginTop: 4,
+    textTransform: 'uppercase', // Optional: makes categories look like badges
+    letterSpacing: 1,
   },
 });
