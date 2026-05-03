@@ -25,6 +25,26 @@ export default function RecipeDetailScreen(props) {
     dispatch(toggleFavorite(recipe)); // Dispatch the recipe to favorites
   };
 
+  const RecipeDetail = (props) => {
+    // 1. Retrieve the recipe data from route params
+    const recipe = props.route.params;
+  
+    return (
+      <View style={styles.container}>
+        {/* ... previous components like imageContainer and buttons ... */}
+  
+        {/* 2. Display the title using the retrieved data */}
+        <View testID="recipeTitle">
+          <Text style={styles.titleText}>
+            {recipe.name} 
+          </Text>
+        </View>
+  
+        {/* ... other recipe details like description or ingredients ... */}
+      </View>
+    );
+  };
+
   return (
     <ScrollView
       style={styles.container}
@@ -344,5 +364,12 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 50,
     backgroundColor: 'white',
+  },
+  titleText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#374151', // dark gray
+    paddingHorizontal: 16,
+    marginTop: 20,
   },
 });
