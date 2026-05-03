@@ -193,6 +193,24 @@ const RecipeMiscInfo = ({ recipe }) => {
     );
   };
 
+const RecipeInstructions = (props) => {
+  // Retrieve the recipe data passed from the navigation
+  const recipe = props.route.params;
+
+  return (
+    <View testID="sectionContainer" style={styles.container}>
+      {/* Instructions Title */}
+      <Text style={styles.sectionTitle}>
+        Instructions
+      </Text>
+
+      {/* Instructions Body */}
+      <Text style={styles.instructionsText}>
+        {recipe.recipeInstructions}
+      </Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -200,6 +218,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     marginTop: 20,
+    marginBottom: 30,
   },
   scrollContent: {
     paddingBottom: 30,
@@ -258,10 +277,10 @@ const styles = StyleSheet.create({
     marginBottom: hp(2),
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#374151',
-    marginBottom: 15,
+    color: '#374151', // Dark grey/black
+    marginBottom: 10,
   },
   descriptionText: {
     fontSize: hp(1.8),
@@ -492,5 +511,10 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#6B7280',
     marginLeft: 5,
+  },
+  instructionsText: {
+    fontSize: 16,
+    color: '#4B5563', // Medium grey
+    lineHeight: 24,   // Added for better readability
   },
 });
