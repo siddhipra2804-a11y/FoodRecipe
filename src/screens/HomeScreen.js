@@ -729,12 +729,19 @@ export default function HomeScreen() {
         </View>
 
         <View testID="categoryList">
-       
+            <Categories 
+          categories={categories} 
+          activeCategory={activeCategory} 
+          handleChangeCategory={handleChangeCategory} 
+        />
         </View>
 
         <View testID="foodList">
-
-          </View>
+        <Recipes 
+          foods={recipes} 
+          categories={categories} 
+        />
+        </View>
       </ScrollView>
     </View>
   );
