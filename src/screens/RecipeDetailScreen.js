@@ -130,12 +130,25 @@ export default function RecipeDetailScreen(props) {
 
       {/* Instructions */}
       <View style={styles.sectionContainer} testID="sectionContainer">
-        
-        </View>
-          {/* Description */}
-         
-        </View>
-
+        <Text style={styles.sectionTitle}>Ingredients</Text>
+        <View testID="ingredientsList" style={styles.listWrapper}>
+        {recipe.ingredients.map((item, index) => (
+          <View key={index} style={styles.ingredientRow}>
+            {/* Bullet point or Bullet Icon */}
+            <View style={styles.bullet} />
+            
+            <View style={styles.ingredientTextContainer}>
+              <Text style={styles.ingredientName}>
+                {item.name}
+              </Text>
+              <Text style={styles.ingredientMeasure}>
+                {item.measure}
+              </Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    </View>
     </ScrollView>
   );
 }
@@ -185,6 +198,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
+    paddingHorizontal: 16,
+    marginTop: 20,
   },
   scrollContent: {
     paddingBottom: 30,
@@ -243,9 +258,10 @@ const styles = StyleSheet.create({
     marginBottom: hp(2),
   },
   sectionTitle: {
-    fontSize: hp(2.5),
-    fontWeight: "bold",
-    color: "#4B5563", // text-neutral-700
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#374151',
+    marginBottom: 15,
   },
   descriptionText: {
     fontSize: hp(1.8),
@@ -446,5 +462,35 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     color: '#4B5563',
-  }
+  },
+  listWrapper: {
+    marginLeft: 5,
+  },
+  ingredientRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  bullet: {
+    height: 8,
+    width: 8,
+    backgroundColor: '#FBBF24', // Amber bullet point
+    borderRadius: 4,
+    marginRight: 10,
+  },
+  ingredientTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  ingredientName: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#4B5563',
+  },
+  ingredientMeasure: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#6B7280',
+    marginLeft: 5,
+  },
 });
